@@ -1,0 +1,26 @@
+-create the project folder i.e aqualytica
+-write to your Dockerfile after chosing an empty port
+-write to your requirements.txt file
+-create the app folder and inside add your empty __init.py__ file and write to the main.py file
+-Run the commands below while in the project folder:
+	docker build -t <imagename> .   (dont leave out the "." it specifies you want to build the image in the current folder(the project folder i.e aqualytica))
+	docker run -d --name <containername> -p 'portnumber':80 <imagename>
+-Login to the registry and push your image using the following commands:
+	docker login registry.digitalocean.com
+	docker tag <imagename> registry.digitalocean.com/thinglooker/<imagename>   :(thinglooker is the registry name so it will always remain the same in this command)
+	docker push registry.digitalocean.com/thinglooker/<imagename>	
+-Go to DO App service and build the app based on the newly pushed image
+-The deployment will fail due to Health check reasons after which you go back to the app - image component -HTTP port - change the port to the one specified in the 
+ Dockerfile and the app will automatically deploy.
+-Test the API on the web using 'GET' Url to see the data that currently sits in the DB
+-SUCCESS!!
+
+-Additional Docker commands:
+	docker rmi <your-image-id> : removing an image
+	docker rmi -f <your-image-id> : force removing an image
+	docker stop <containerid> : stopping a container
+	docker rm <containerid> : removing a container
+
+-Additional Linux commands:
+	CTRL + O then ENTER :Save changes in a file
+	CTRL + X :Exit the file
